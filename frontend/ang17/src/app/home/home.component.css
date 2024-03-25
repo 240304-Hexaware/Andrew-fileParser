@@ -1,0 +1,14 @@
+:host {
+    --content-padding: 10px;
+}
+
+.content {
+    padding: var(--content-padding);
+}
+
+.box{
+    height: 20px;
+    width: 50%;
+    border-radius: 4px;
+    border: 1px solid black;
+}

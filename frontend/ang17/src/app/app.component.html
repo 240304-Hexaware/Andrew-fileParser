@@ -1,0 +1,42 @@
+<main>
+  <header>
+    <content class="content">
+      <div class="trySpan" id="title">
+        <a [href]="['/']">
+          <h1>File-Parser</h1>
+        </a>
+      </div>
+      <div class="trySpan" id="left-side">
+        <a [href]="['/register']">
+          Register
+        </a>
+      </div>
+      <div class="trySpan" id="right-side">
+        <!--This will have to be a component of its own
+        1.To display username/password information
+        -->
+        <label>username:</label>
+        <input type="text"/>
+        <label>password:</label>
+        <input type="text">
+        <button>ClickMe!</button>
+      </div>
+      
+      <!--span>
+        <h1>File-Parser</h1>
+      </span>
+      <span class="trySpan" id="left-side">
+        some content
+      </span>
+      <span class="trySpan" id="right-side">
+        <label>username:</label>
+        <input type="text"/>
+        <label>password:</label>
+        <input type="text">
+        <button>ClickMe!</button>
+      </span-->
+    </content>
+  </header>
+</main>
+<router-outlet />
+
