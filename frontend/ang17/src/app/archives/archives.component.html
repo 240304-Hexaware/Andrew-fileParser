@@ -1,1 +1,70 @@
-<p>archives works!</p>
+<h2>View Parsed Records</h2>
+<section id="fullEncapsulation">
+    <form id="addFiles" [formGroup]="parseForm" (submit)="parseFile()">
+        <label>Insert a FlatFile</label>
+        <input type="file" id="flatfileInput" formControlName="flatfileInput"/>
+        <label>Insert a SpecFile</label>
+        <input type="file" id="specfileInput" formControlName="specfileInput"/>
+        <button>Parse</button>
+    </form>
+    <section id="viewParsed">
+        <!--Section includes the user being able to pick filters for their sessions-->
+        
+        
+        <section class="dateBox">
+            <label>To:</label>
+            <input type="date" id="maxDate"   value="yyyy-mm-dd" class="input-medium search-query" onkeypress="return false">
+            <!--Icon to let user pick a date on a calendar-->
+            <label>From:</label>
+            <input type="date" id="maxDate"   value="yyyy-mm-dd" class="input-medium search-query" onkeypress="return false">
+        </section>
+
+        <!--This is a big section,
+        1. Allow the user to see the list of sessions from latest to oldest based on range,
+        This sessionlist will have a scrollbar to view the list
+        2. We have a little arrow telling the user the conversion,
+        displaying the flatfile used at the top, and the specfile used below arrow
+        3. Third box that renders the JSON of a chosen section -->
+        <section id="bigSection">
+            <div class="box">
+                <!--A structural Directive needs to be used here-->
+                <p class="inbutton hover">session1</p>
+                <p class="inbutton hover">session2</p>
+                <p class="inbutton hover">session1</p>
+                <p class="inbutton hover">session2</p>
+                <p class="inbutton hover">session1</p>
+                <p class="inbutton hover">session2</p>
+                <p class="inbutton hover">session1</p>
+                <p class="inbutton hover">session2</p>
+                <p class="inbutton hover">session1</p>
+                <p class="inbutton hover">session2</p>
+                <p class="inbutton hover">session1</p>
+                <p class="inbutton hover">session2</p>
+                <p class="inbutton hover">session1</p>
+                <p class="inbutton hover">session2</p>
+                <p class="inbutton hover">session1</p>
+                <p class="inbutton hover">session2</p>
+                <p class="inbutton hover">session1</p>
+                <p class="inbutton hover">session2</p>
+                <p class="inbutton hover">session1</p>
+                <p class="inbutton hover">session2</p>
+                <p class="inbutton hover">session1</p>
+                <p class="inbutton hover">session2</p>
+                <p class="inbutton hover">session1</p>
+                <p class="inbutton hover">session2</p>
+                
+                
+            </div>
+
+            <div class="box" id="displayArrow">
+                <p>flatfile.txt</p>
+                <p>=></p>
+                <p>specfile.txt</p>
+            </div>
+
+            <div class="box">
+                <p>\dummy:json,for:test,dummy:json,for:test,dummy:json,for:test,\</p>
+            </div>
+        </section>
+    </section>
+</section>

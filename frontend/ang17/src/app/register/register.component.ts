@@ -46,8 +46,8 @@ export class RegisterComponent {
 
     this.requestService.registerUser(user)
       .subscribe((data) => {
-        console.log("Returned User:",data);
         this.userSuccessful = data;
+        console.log("this.userSuccessful =", this.userSuccessful);
       })
     //submit application service(
       //this.applyForm.value.username ?? '',

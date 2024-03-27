@@ -1,10 +1,15 @@
 
-<content class="content">
-    <p class="content">home works!</p>
-</content>
-<span class="box">
-    sometext
-</span>
-<span class="box">
-    sometext
-</span>
+<!--app-archives *ngIf="true"></app-archives-->
+<!--This structural Directive is being watched somehow-->
+<app-archives *ngIf="this.user.id != undefined; else elseBlock"></app-archives>
+
+<ng-template #elseBlock>
+    <content class="content">
+        <p>Anonymous Homepage</p>
+    </content>    
+    <button (click)="putUser()">setUser to Jyle</button>
+</ng-template>
+
+
+
+

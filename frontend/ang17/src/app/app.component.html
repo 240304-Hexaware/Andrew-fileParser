@@ -1,26 +1,34 @@
 <main>
   <header>
+    <div class="trySpan" id="title">
+      <a [href]="['/']">
+        <h1>File-Parser</h1>
+      </a>
+    </div>
+    <div class="trySpan" id="left-side">
+      <a [href]="['/register']">
+        Register
+      </a>
+    </div>
+
+    <!--Time to make this a component :)-->
+    <div class="checkDiv">
+      <!--This will have to be a component of its own
+      1.To display username/password information
+      -->
+      <form class="checkbox trySpan" id="right-side" [formGroup]="loginForm" (submit)="submitLogin()">
+        <label class="checkbox" for="username">username:</label>
+        <input class="checkbox" id="username" type="text" formControlName="username"/>
+        <label for="password">password:</label>
+        <input id="password" type="text" formControlName="password"/>
+        <button type="submit">Login!</button>
+      </form>
+    </div>
+
     <content class="content">
-      <div class="trySpan" id="title">
-        <a [href]="['/']">
-          <h1>File-Parser</h1>
-        </a>
-      </div>
-      <div class="trySpan" id="left-side">
-        <a [href]="['/register']">
-          Register
-        </a>
-      </div>
-      <div class="trySpan" id="right-side">
-        <!--This will have to be a component of its own
-        1.To display username/password information
-        -->
-        <label>username:</label>
-        <input type="text"/>
-        <label>password:</label>
-        <input type="text">
-        <button>ClickMe!</button>
-      </div>
+      
+
+      
       
       <!--span>
         <h1>File-Parser</h1>

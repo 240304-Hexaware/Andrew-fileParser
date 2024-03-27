@@ -21,6 +21,7 @@ import java.util.List;
 
 import org.bson.types.ObjectId;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -42,13 +43,14 @@ public class FileParserController {
     }
 
     //We're ditching working with html for this, lets continue using postman
+    @CrossOrigin(origins="*")
     @PostMapping("file-parser")
     public User postMethodName(@RequestParam("flatfile") MultipartFile flatfile , 
         @RequestParam("specfile") MultipartFile specfile, @RequestHeader("id") ObjectId id) 
         throws IOException, AuthenticationFailed {
         
         //TODO: pass paths as header data
-
+        System.out.println("Recieved Header:"+id);
         if(!userService.authorizeUser(id)){
             throw new AuthenticationFailed();
         }

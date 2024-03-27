@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from './Models/user';
@@ -26,5 +26,19 @@ export class RequestService {
 
   registerUser(user: User): Observable<User>{
     return this.http.post<User>(this.url+"users/register", user, this.registerOptions);
+  }
+
+  loginUser(user: User): Observable<User>{
+    return this.http.post<User>(this.url+"users/login", user, this.registerOptions);
+  }
+
+  parseFiles(body: FormData, id: string){
+    let headers = new HttpHeaders();
+    headers = headers.append('id', id);
+    headers = headers.append('content-type', 'multipart/form-data');
+    console.log(id);
+    console.log("We get to service");
+
+    return this.http.post<any>(this.url+"file-parser", body, {'headers': headers});
   }
 }

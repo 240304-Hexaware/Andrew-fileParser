@@ -1,0 +1,74 @@
+#fullEncapsulation{
+    justify-content:space-between;
+    /* border:1px red solid; */
+    display: flex;
+}
+#addFiles{
+    height: 700px;
+    width: 200px;
+    display: inline-block;
+}
+
+.dateBox{
+    height: 30px;
+    width: 500px;
+    margin:auto;
+}
+
+.box{
+    height: 100%;
+    width: 30%;
+    border: 1px black solid;
+    overflow-x: auto;
+    display: inline-block;
+
+    /*
+    width: 100px;
+    display: inline-block;
+    */
+}
+.inbutton{
+    border: 1px black solid;
+    text-align:center;
+    padding: 5px;
+}
+
+#displayArrow{
+    height:30%;
+    text-align:center;
+    margin-top:10%;
+    padding-top:100px;
+}
+
+p:hover{
+    background-color: grey;
+}
+#addFiles{
+    /* border: 1px green solid; */
+}
+#viewParsed{
+    /* border: 1px blue solid; */
+    width: 70%;
+    
+    display: inline-block;
+    /*
+    margin: auto;
+    */
+}
+
+#bigSection{
+    padding: 5px;
+    border: 1px black solid;
+    width: 700px;
+    height: 500px;
+    
+    justify-content:space-between;
+    display:flex;
+    /*
+    justify-content:space-between;
+    float:center;
+    margin:auto;
+    */
+    
+}
+
