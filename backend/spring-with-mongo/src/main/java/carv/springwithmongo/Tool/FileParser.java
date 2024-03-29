@@ -82,8 +82,8 @@ public class FileParser {
         return recordSize;
     }
 
-    public static List<Document> readMultiRecord(String data, Map<String, Field> spec) throws IOException {
-        List<Document> fieldList = new ArrayList<>();
+    public static List<GenericRecord> readMultiRecord(String data, Map<String, Field> spec) throws IOException {
+        List<GenericRecord> fieldList = new ArrayList<>();
         int dataLen = data.length();
         int entry = 0;
         int recordSize = FileParser.getRecordSize(spec);
@@ -95,7 +95,7 @@ public class FileParser {
                 String fieldValue = data.substring(field.getStartPos()+(recordSize*entry), field.getEndPos()+1+(recordSize*entry)).trim();
                 doc.append(fieldName, fieldValue);
             }
-            fieldList.add(doc);
+            fieldList.add(new GenericRecord(doc));
             entry++;
         }
         

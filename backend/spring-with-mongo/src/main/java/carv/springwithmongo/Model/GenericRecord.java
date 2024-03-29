@@ -15,11 +15,6 @@ public class GenericRecord{
     @Field
     org.bson.Document document;
 
-    @DocumentReference
-    RecordMetadata metadata;
-
-    
-
     public GenericRecord(){}
 
     public GenericRecord(org.bson.Document document){
@@ -38,13 +33,6 @@ public class GenericRecord{
     }
     public void setDocument(org.bson.Document document) {
         this.document = document;
-    }
-    
-    public RecordMetadata getMetadata() {
-        return this.metadata;
-    }
-    public void setMetadata(RecordMetadata metadata) {
-        this.metadata = metadata;
     }
 
 }

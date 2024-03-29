@@ -13,3 +13,9 @@
     border: 1px solid black;
     display: inline;
 }
+#suchContent{
+    position: absolute;
+    width:30%;
+    height:30%;
+    margin:auto;
+}

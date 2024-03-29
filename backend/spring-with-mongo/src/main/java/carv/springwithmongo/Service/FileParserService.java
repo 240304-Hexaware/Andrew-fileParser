@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import carv.springwithmongo.Model.GenericRecord;
 import carv.springwithmongo.Model.RecordMetadata;
+import carv.springwithmongo.Model.Session;
 import carv.springwithmongo.Repository.FileParserRepository;
 import carv.springwithmongo.Tool.Field;
 import carv.springwithmongo.Tool.FileParser;
@@ -33,20 +34,20 @@ public class FileParserService {
     /* This Implementation is meant to work for reading one flatfile entry
      * 
      */
-    public List<GenericRecord> interpretDocument(RecordMetadata rmetadata) throws IOException{
+    public Session interpretDocument(RecordMetadata rmetadata) throws IOException{
 
-        List<GenericRecord> persistedList = new ArrayList<GenericRecord>();
+        // List<Session> persistedList = new ArrayList<Session>();
         Map<String, Field> map = Specification.parseSpec(new File(rmetadata.getSpecfilePath())); //This'll represent our key
         String data = FileParser.readAllBytes(new File(rmetadata.getFlatfilePath()));
-        List<Document> docList = FileParser.readMultiRecord(data,map);
-        
-        for(Document record: docList){
-            GenericRecord genericRecord = new GenericRecord(record);
-            genericRecord.setMetadata(rmetadata);
-            persistedList.add(fileParserRepository.save(genericRecord));
+        List<GenericRecord> docList = FileParser.readMultiRecord(data,map);
+        Session session = new Session();
+        session.setRmetadata(rmetadata);
+
+        for(GenericRecord record: docList){
+            session.addRecords(fileParserRepository.save(record));
         }
 
-        return persistedList;
+        return session;
     }
 
     public void metadata(){

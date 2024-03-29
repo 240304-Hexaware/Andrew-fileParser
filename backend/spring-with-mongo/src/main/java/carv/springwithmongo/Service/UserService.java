@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import carv.springwithmongo.Exceptions.AuthenticationFailed;
 import carv.springwithmongo.Model.GenericRecord;
+import carv.springwithmongo.Model.Session;
 import carv.springwithmongo.Model.User;
 import carv.springwithmongo.Repository.UserRepository;
 
@@ -41,12 +42,10 @@ public class UserService {
         return (optional.isPresent())? true: false;
     }
 
-    public User addDocument(ObjectId userId , List<GenericRecord> records){
+    public User addSession(ObjectId userId , Session session){//TODO: Change GenericRecord -> Session
         Optional<User> optional = userRepository.findById(userId);
         User user = optional.get();
-        for(GenericRecord record: records){
-            user.addRecord(record);
-        }
+        user.addSessions(session);
         return userRepository.save(user);
     }
 

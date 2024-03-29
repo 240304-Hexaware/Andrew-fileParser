@@ -1,0 +1,8 @@
+p:hover{
+    background-color: grey;
+}
+.inbutton{
+    border: 1px black solid;
+    text-align:center;
+    padding: 5px;
+}

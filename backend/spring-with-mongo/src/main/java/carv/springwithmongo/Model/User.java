@@ -19,15 +19,21 @@ public class User {
     @Field
     private String password;
     @DocumentReference
-    private List<GenericRecord> records; //TODO: records are being dumped, not added onto?
+    private List<Session> sessions; //TODO: records are being dumped, not added onto?
 
-    public User(){this.records = new ArrayList<GenericRecord>();}
+    public User(){this.sessions = new ArrayList<Session>();}
+
+    public User(String username, String password){
+        this.id = new ObjectId("");
+        this.username = username;
+        this.password = password;
+    }
 
     public User(ObjectId id, String username, String password){
         this.id = id;
         this.username = username;
         this.password = password;
-        this.records = new ArrayList<GenericRecord>();
+        this.sessions = new ArrayList<Session>();
     }
 
     public ObjectId getId() {
@@ -54,15 +60,15 @@ public class User {
         this.password = password;
     }
 
-    public List<GenericRecord> getRecords() {
-        return this.records;
+    public List<Session> getSessions() {
+        return this.sessions;
     }
 
-    public void setRecords(List<GenericRecord> records) {
-        this.records = records;
+    public void setSessions(List<Session> session) {
+        this.sessions = session;
     }
-    public void addRecord(GenericRecord record){
-        this.records.add(record);
+    public void addSessions(Session session){
+        this.sessions.add(session);
     }
 
     public String toString(){

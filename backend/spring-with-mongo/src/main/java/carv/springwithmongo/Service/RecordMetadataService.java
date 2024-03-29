@@ -30,7 +30,7 @@ public class RecordMetadataService {
         System.out.println("specfilePath: " + specfilePath);
 
         //TODO: This makes us have state.
-        String absolutePath = "C:\\Users\\Macho\\Documents\\VisualStudio_Workspace\\Revature\\RevTraining\\file-parser-project-phase1\\backend\\blockStorage\\";
+        String absolutePath = "C:\\Users\\Macho\\Documents\\VisualStudio_Workspace\\Revature\\RevTraining\\file-parser-project-phase2\\backend\\blockStorage\\";
         String blockStorage = "--blockStorage";
         String flatfileStored = absolutePath+username+blockStorage+"\\flatFiles\\"+flatfilePath;
         String specfileStored = absolutePath+username+blockStorage+"\\specFiles\\"+specfilePath;

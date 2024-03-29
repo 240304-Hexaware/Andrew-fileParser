@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { User } from './Models/user';
 import { RequestService } from './request.service';
+import { UserService } from './user.service';
 
 @Component({
   selector: 'app-root',
@@ -14,15 +15,10 @@ import { RequestService } from './request.service';
 })
 export class AppComponent {
   title = 'ang17';
-  user: User;
   requestService: RequestService = inject(RequestService);
 
-  constructor(){
-      this.user = {
-        id: undefined,
-        username: "",
-        password: ""
-      }
+  constructor(private userService: UserService){
+    console.log("App Created");
   }
   loginForm = new FormGroup({
     username: new FormControl(''),
@@ -31,17 +27,18 @@ export class AppComponent {
 
   submitLogin(){
     console.log("Login User");
-    let inputUser: User = {
-      id: undefined,
-      username: this.loginForm.value.username?? '',
-      password: this.loginForm.value.password?? ''
-    }
+    
+    let username = this.loginForm.value.username?? '';
+    let password = this.loginForm.value.password?? '';
+    
 
-    this.requestService.loginUser(inputUser)
+    this.requestService.loginUser(username, password)
       .subscribe((data) => {
-        this.user = data;
-        console.log("WrittenLoginUser:", this.user);
+        console.log("WrittenLoginUser:", data);
+        //this.userService.user = data;
+        this.userService.changeUser(data);
       })
+    //TODO: do we need an onchange for HOme Component?
 
   }
 
