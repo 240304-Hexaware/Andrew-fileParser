@@ -7,13 +7,14 @@
         <input type="file" id="specfileInput" formControlName="specfileInput"/>
         <button>Parse</button>
     </form-->
-
-    <label>Insert a FlatFile</label>
-    <input type="file" id="flatfileInput" (change)="flatfileChosen($event)"/>
-    <label>Insert a SpecFile</label>
-    <input type="file" id="specfileInput" (change)="specfileChosen($event)"/>
-    <button (click)="buttonClicked()">Parse</button>
-    <h3>Did we get it? {{user.username}}</h3>
+    <section id="addFiles">
+        <label>Insert a FlatFile</label>
+        <input type="file" id="flatfileInput" (change)="flatfileChosen($event)"/>
+        <label>Insert a SpecFile</label>
+        <input type="file" id="specfileInput" (change)="specfileChosen($event)"/>
+        <button (click)="buttonClicked()">Parse</button>
+        <h3>Did we get it? {{user.username}}</h3>
+    </section>
 
     
     <section id="viewParsed">
@@ -60,3 +61,10 @@
         </section>
     </section>
 </section>
+<section>
+    <h2>Testing Section</h2>
+    <h3>Lets reduce complexity...</h3>
+    <h3>What is the value of this string literal? => {{hardcodeConcat}}</h3>
+</section>
+
+

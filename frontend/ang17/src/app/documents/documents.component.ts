@@ -14,11 +14,11 @@ export class DocumentsComponent {
   stringified: string = "";
 
   constructor(private requestService: RequestService){
-    console.log(document);
+    //console.log(document);
     //this.stringified = JSON.stringify(Object.values(document));
   }
   ngAfterViewChecked(){
-    console.log("Document Child Component:",document);
+    //console.log("Document Child Component:",document);
   }
 
 

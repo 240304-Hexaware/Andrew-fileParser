@@ -23,6 +23,7 @@ export class ArchivesComponent {
   sessions: Session[];
   filteredSessions: Session[];
   documents = [];
+  hardcodeConcat: string = "InitVal";
 
   constructor(private userService: UserService){
     this.form = new FormData();
@@ -83,10 +84,18 @@ export class ArchivesComponent {
     }*/
     //let firstEntry = setDocs[0];
     //console.log(firstEntry);
-    console.log(Object.values(setDocs));
-    this.documents = Object.values(setDocs);
-    //this.documents = setDocs;
+    //console.log(Object.values(setDocs));
+    //this.documents = Object.values(setDocs);
+    this.documents = setDocs;
+    this.hardcodeConcatArray();
     
-    
+  }
+  hardcodeConcatArray(){
+    this.hardcodeConcat = "";
+    console.log("this.documents.length:",this.documents.length);
+    let i = 0;
+    while(this.documents.length != 0 && i < this.documents.length){
+      this.hardcodeConcat += JSON.stringify(this.documents[i++]);
+    }
   }
 }
