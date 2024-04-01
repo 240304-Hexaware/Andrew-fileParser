@@ -17,6 +17,7 @@ export class AppComponent {
   title = 'ang17';
   requestService: RequestService = inject(RequestService);
 
+
   constructor(private userService: UserService){
     console.log("App Created");
   }
@@ -26,20 +27,17 @@ export class AppComponent {
   });
 
   submitLogin(){
-    console.log("Login User");
-    
     let username = this.loginForm.value.username?? '';
     let password = this.loginForm.value.password?? '';
-    
-
+  
     this.requestService.loginUser(username, password)
       .subscribe((data) => {
         console.log("WrittenLoginUser:", data);
         //this.userService.user = data;
-        this.userService.changeUser(data);
-      })
-    //TODO: do we need an onchange for HOme Component?
+        this.userService.user = data;
 
+      })
+    //TODO: do we need an onchange for Home Component?
   }
 
 }

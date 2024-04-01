@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Session } from '../Models/session';
 import { RequestService } from '../request.service';
-import { User } from '../Models/user';
 import { UserService } from '../user.service';
 
 @Component({
@@ -13,21 +12,20 @@ import { UserService } from '../user.service';
 })
 export class SessionsComponent {
 
-  user: User;
   @Input() session!: Session;
-  @Output() docsEmitter = new EventEmitter<any>();
+  @Output() recordsEmitter = new EventEmitter<any>();
 
-  constructor(private requestService: RequestService, userService: UserService){
-    this.user = userService.user;
+  constructor(private requestService: RequestService, 
+    private userService: UserService ){
+
   }
-
+  
   showDocumentsBySession(){
     const sessionid = this.session.id;
-    let docs = this.requestService.getAllRecordsBySession(this.session.id);
-    //console.log("Retrieved:",docs);
-    //docs.subscribe(docs => this.docsEmitter.emit(docs));
-    this.docsEmitter.emit(docs);
-
+    console.log("this sessionid...", sessionid);
+    let docs = this.requestService.getAllRecordsBySession(sessionid);
+    this.recordsEmitter.emit(docs); //emits observable
   }
+
 
 }

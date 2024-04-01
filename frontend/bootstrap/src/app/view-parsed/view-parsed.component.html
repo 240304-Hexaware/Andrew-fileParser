@@ -1,0 +1,24 @@
+<div class="w-75 mx-auto" style="border: 1px black solid">
+    <div class="d-flex flex-row justify-content-between mb-3">
+        <div class="p-2"></div>
+        <div class="p-2">Flex item 1</div>
+        <div class="p-2">Flex item 2</div>
+    </div>
+    <div class="d-flex flex-row align-items-stretch justify-content-center mb-2" style="border: 1px black solid">
+        <div class="p-2" style="border: 1px black solid">
+            <app-sessions
+                *ngFor="let session of sessions"
+                [session]="session"
+                (recordsEmitter)="transferDocs($event)"
+            ></app-sessions>
+        </div>
+        <div class="p-2" style="border: 1px black solid">
+            <p class="mx-auto">flatfile.txt</p>
+            <p class="mx-auto">=></p>
+            <p class="mx-auto">specfile.txt</p>
+        </div>
+        <div class="p-2" style="border: 1px black solid">
+            <p>{{this.fullJson}}</p>
+        </div>
+    </div>
+</div>

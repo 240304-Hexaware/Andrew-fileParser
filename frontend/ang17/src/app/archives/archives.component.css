@@ -49,7 +49,6 @@
 #viewParsed{
     /* border: 1px blue solid; */
     width: 70%;
-    
     display: inline-block;
     /*
     margin: auto;
@@ -71,4 +70,6 @@
     */
     
 }
-
+#consumeData{
+    overflow:auto;
+}

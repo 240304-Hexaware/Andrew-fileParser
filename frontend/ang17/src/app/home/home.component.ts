@@ -14,30 +14,37 @@ import { RequestService } from '../request.service';
 })
 export class HomeComponent {
   
-  user: User;
-
+  userService: UserService;
   
-  // user: User = {
-  //   id: "6602f445ae64ab0180fe056c",
-  //   username: "Jyle",
-  //   password: ""
-  // };
-  
+  constructor(private requestService: RequestService,private useService: UserService){
+    this.userService = useService;
 
-  constructor(private requestService: RequestService,private userService: UserService){
-    this.user = userService.user;
-    console.log("Home Created");
+    /*userService.userObservable
+    .subscribe(
+      {next:(user)=>{
+        this.user = user;
+      },
+      error: ()=>{
+
+      },
+      complete: ()=>{
+
+      }
+      }
+    
+    );*/
   }
 
-  putUser(){
-    this.user.id = "6602f445ae64ab0180fe056c";
-    this.user.username = "Jyle";
-  }
+  
 
- 
-
-  /*fun(){
-    return this.requestService.authorizeUser(this.user);
+  /*authorizeUser(){
+    this.requestService.authorizeUser(this.userService.user)
+      .subscribe(
+        (data) => {
+          return data;
+        }
+      );
+    return false;
   }*/
 
   

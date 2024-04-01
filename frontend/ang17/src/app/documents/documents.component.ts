@@ -10,15 +10,26 @@ import { CommonModule } from '@angular/common';
   styleUrl: './documents.component.css'
 })
 export class DocumentsComponent {
-  @Input() document!: {};
+  @Input() document!: any;
   stringified: string = "";
+  
 
   constructor(private requestService: RequestService){
-    //console.log(document);
+    console.log(JSON.stringify(this.document));
+    this.stringified = JSON.stringify(this.document);
     //this.stringified = JSON.stringify(Object.values(document));
   }
   ngAfterViewChecked(){
     //console.log("Document Child Component:",document);
+  }
+
+  generalizeDoc(){
+    //Get Keys to the document to display information
+    //let keys = Object.keys(this.document);
+    //for(let key in keys){
+
+    //}
+    
   }
 
 

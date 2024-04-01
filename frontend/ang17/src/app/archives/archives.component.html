@@ -10,9 +10,11 @@
     <section id="addFiles">
         <label>Insert a FlatFile</label>
         <input type="file" id="flatfileInput" (change)="flatfileChosen($event)"/>
+        <br/>
         <label>Insert a SpecFile</label>
         <input type="file" id="specfileInput" (change)="specfileChosen($event)"/>
-        <button (click)="buttonClicked()">Parse</button>
+        <br/>
+        <button (click)="submitParse()">Parse</button>
         <h3>Did we get it? {{user.username}}</h3>
     </section>
 
@@ -52,10 +54,11 @@
             </div>
 
             <div class="box" id="consumeData">
-                <app-documents 
+                <!--app-documents 
                     *ngFor="let document of documents"
                     [document]="document"
-                    ></app-documents>
+                    ></app-documents-->
+                <p>{{hardcodeConcat}}</p>
                 <!-- <p>\dummy:json,for:test,dummy:json,for:test,dummy:json,for:test,\</p> -->
             </div>
         </section>

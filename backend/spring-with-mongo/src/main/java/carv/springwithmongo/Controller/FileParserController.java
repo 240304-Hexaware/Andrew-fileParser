@@ -32,8 +32,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 
-
-
+//mongodb+srv://andrewcarvajal38:xOZDUYwZea38D694@file-parser-cluster0.8kdatr1.mongodb.net/?retryWrites=true&w=majority&appName=file-parser-cluster0
+//mongodb+srv://andrewcarvajal38:xOZDUYwZea38D694@file-parser-cluster0.8kdatr1.mongodb.net/file-parser-cluster0
+//spring.data.mongodb.uri
 @RestController
 public class FileParserController {
 

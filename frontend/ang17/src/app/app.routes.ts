@@ -5,4 +5,5 @@ import { RegisterComponent } from './register/register.component';
 export const routes: Routes = [
     {path: '', component: HomeComponent},
     {path: 'register', component: RegisterComponent}
+    
 ];

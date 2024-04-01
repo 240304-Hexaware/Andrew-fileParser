@@ -11,7 +11,7 @@ export class UserService {
   userObservable: Observable<User> = {} as Observable<User>;
 
   constructor() { 
-    console.log("User Service Created");
+    console.log("Service Contructor");
     this._user = {
       id: "",
       username: "",
@@ -31,6 +31,7 @@ export class UserService {
       observer.next(user);
     });
   }
+
 
   public get user(){
     return this._user;

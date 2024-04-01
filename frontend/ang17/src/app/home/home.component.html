@@ -1,13 +1,13 @@
 
 <!--app-archives *ngIf="true"></app-archives-->
 <!--This structural Directive is being watched somehow-->
-<app-archives *ngIf="!(user.id == ''); else elseBlock"></app-archives>
+<app-archives *ngIf="!(this.userService.user.id == ''); else elseBlock"></app-archives>
 
 <ng-template #elseBlock>
     <content class="content">
         <p>Anonymous Homepage</p>
     </content>    
-    <button (click)="putUser()">setUser to Jyle</button>
+    <!--button (click)="putUser()">setUser to Jyle</button-->
 </ng-template>
 
 

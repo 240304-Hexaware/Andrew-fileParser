@@ -1,0 +1,120 @@
+<!--
+  Header
+  leftBox
+  content
+  rightBox
+  footer
+-->
+<nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #969696;">
+  <div class="container-fluid">
+    <a class="navbar-brand fs-1" [routerLink]="['']">
+      <img src="../doublePageIcon.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+      FileParser
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <button type="button" class="btn"  id="nav-link-add" data-bs-toggle="modal" data-bs-target="#addFileModal">Add</button>
+
+          <div class="modal fade" id="addFileModal" tabindex="-1" aria-labelledby="addFileModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="addFileModalLabel">Parse Files</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                
+                  <div class="modal-body">
+                    <div class="d-flex flex-column mb-3">
+                      <label class="p-1 " for="username">Insert Flatfile:</label>
+                      <input class="" id="flatfileInput" type="file" />
+                      <label class="p-1 " for="password">Insert Specfile:</label>
+                      <input class="" id="specfileInput" type="file" />
+                      <!--button>Parse</button-->
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Parse</button>
+                  </div>
+                
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="nav-link-view-parsed" aria-disabled="false" [routerLink]="['/view-parsed']">View Parsed</a> <!--Route-->
+          <!--a class="nav-link disabled" id="nav-link-view-parsed" aria-disabled="true" [href]="['/view-parsed']">View Parsed</a--> <!--Route-->
+          
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="nav-link-view-aggregate" aria-disabled="false" [routerLink]="['/view-aggregate']">View Aggregate</a> <!--Route-->
+        </li>
+      </ul>
+      <app-authorize *ngIf="this.welcomeCheck(); else elseBlock"></app-authorize>
+      <ng-template #elseBlock>
+        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+
+        <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="loginModalLabel">Login</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <form id="" [formGroup]="loginForm" (submit)="submitLogin()">
+                <div class="modal-body">
+                  <div class="d-flex flex-column mb-3">
+                    <label class="p-1 " for="username">Username:</label>
+                    <input class="p-1 " id="username" type="text" formControlName="username"/>
+                    <label class="p-1 " for="password">Password:</label>
+                    <input class="p-1 " id="password" type="text" formControlName="password"/>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Login</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="registerModalLabel">Register</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <form id="" [formGroup]="registerForm" (submit)="submitRegister()">
+                <div class="modal-body">
+                  <div class="d-flex flex-column mb-3">
+                    <label class="p-1 " for="username">Username:</label>
+                    <input class="p-1 " id="username" type="text" formControlName="username"/>
+                    <label class="p-1 " for="password">Password:</label>
+                    <input class="p-1 " id="password" type="text" formControlName="password"/>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Register</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+      <!--We want an ngIf Here, else case, button, true case, display user name-->
+      <!--form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form-->
+    </div>
+  </div>
+</nav>
+<router-outlet/>
+<!--p>{{welcomeCheck()}}</p-->

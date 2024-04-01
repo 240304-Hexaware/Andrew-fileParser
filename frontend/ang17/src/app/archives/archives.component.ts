@@ -19,11 +19,14 @@ export class ArchivesComponent {
   user: User;
   requestService: RequestService = inject(RequestService);
   userChanges: any;
+
   form: FormData;
   sessions: Session[];
   filteredSessions: Session[];
   documents = [];
   hardcodeConcat: string = "InitVal";
+  stringifiedDocs: string = "d";
+  
 
   constructor(private userService: UserService){
     this.form = new FormData();
@@ -34,10 +37,10 @@ export class ArchivesComponent {
 
   ngOnInit(){
     this.user = this.userService.user;
-    this.userChanges = this.userService.userChange
+    this.userChanges = this.userService.userObservable
       .subscribe((user) => {
         this.user = user;
-        console.log("User Changed!" + user);
+        //console.log("User Changed!" + user);
       });
   }
 
@@ -61,10 +64,13 @@ export class ArchivesComponent {
       });
   }
 
-  buttonClicked(){
+  submitParse(){
     this.requestService.parseFiles(this.form, this.user.id)
       .subscribe((data)=>{
-        console.log(data);
+        console.log("Parse Complete");
+        this.userService.user = data;
+        //if sessions don't update, might need to add:
+        this.sessions = this.userService.user.sessions;
       })
   }
   //TODO: Using FormData like this might include more than 2 formData entries
@@ -75,10 +81,17 @@ export class ArchivesComponent {
     this.form.append('specfile', event.target.files[0]);
   }
 
-  transferDocs(setDocs: any){
-    console.log("Archives Method: TransferDocs?");
-    console.log("Emitted:", setDocs);
-    console.log("type:", typeof(setDocs));
+  transferDocs(emittedObs: any){
+    console.log("transferDocs");
+    emittedObs
+      .subscribe((docsArray: any) => {
+        this.documents = docsArray;
+        //this.stringifyDocsArray();
+        this.hardcodeConcatArray();
+      });
+
+      //console.log("Emitted:", setDocs);
+    //console.log("type:", typeof(setDocs));
     /*for(let obj of Object.values(setDocs)){
       this.documents.push(obj);
     }*/
@@ -86,13 +99,23 @@ export class ArchivesComponent {
     //console.log(firstEntry);
     //console.log(Object.values(setDocs));
     //this.documents = Object.values(setDocs);
-    this.documents = setDocs;
-    this.hardcodeConcatArray();
+    //this.documents = setDocs;
     
   }
+
+  /*stringifyDocsArray(){
+    this.stringifiedDocs = "";
+    //console.log("this.documents.length:",this.documents.length);
+    let i = 0;
+    while(this.documents.length != 0 && i < this.documents.length){
+      console.log("Times run");
+      this.stringifiedDocs += JSON.stringify(this.documents[i++]);
+    }
+  }*/
+  
   hardcodeConcatArray(){
     this.hardcodeConcat = "";
-    console.log("this.documents.length:",this.documents.length);
+    //console.log("this.documents.length:",this.documents.length);
     let i = 0;
     while(this.documents.length != 0 && i < this.documents.length){
       this.hardcodeConcat += JSON.stringify(this.documents[i++]);
