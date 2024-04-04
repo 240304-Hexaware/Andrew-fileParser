@@ -14,6 +14,7 @@ export class SessionsComponent {
 
   @Input() session!: Session;
   @Output() recordsEmitter = new EventEmitter<any>();
+  @Output() sessionEmitter = new EventEmitter<any>();
 
   constructor(private requestService: RequestService, 
     private userService: UserService ){
@@ -24,7 +25,9 @@ export class SessionsComponent {
     const sessionid = this.session.id;
     console.log("this sessionid...", sessionid);
     let docs = this.requestService.getAllRecordsBySession(sessionid);
+    let metadata = this.requestService.getMetadataBySession(sessionid);
     this.recordsEmitter.emit(docs); //emits observable
+    this.sessionEmitter.emit(metadata);
   }
 
 

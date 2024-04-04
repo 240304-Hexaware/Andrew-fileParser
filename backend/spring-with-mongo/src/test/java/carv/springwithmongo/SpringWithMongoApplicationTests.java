@@ -17,7 +17,6 @@ import org.springframework.context.ApplicationContext;
 import carv.springwithmongo.Controller.*;
 import carv.springwithmongo.Service.*;
 import carv.springwithmongo.Repository.*;
-import carv.springwithmongo.Model.*;
 
 
 //import carv.springwithmongo.SpringWithMongoApplication;

@@ -1,13 +1,12 @@
 package carv.springwithmongo.Service;
 
-import java.util.List;
+import java.io.File;
 import java.util.Optional;
 
 import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
 
 import carv.springwithmongo.Exceptions.AuthenticationFailed;
-import carv.springwithmongo.Model.GenericRecord;
 import carv.springwithmongo.Model.Session;
 import carv.springwithmongo.Model.User;
 import carv.springwithmongo.Repository.UserRepository;
@@ -56,4 +55,47 @@ public class UserService {
         }
         throw new AuthenticationFailed();
     }
+
+    public String[] getAllFlatfileNames(ObjectId userId) throws AuthenticationFailed{
+        Optional<User> optional = userRepository.findById(userId);
+        if(!optional.isPresent()){
+            throw new AuthenticationFailed();
+        }
+        String username = optional.get().getUsername();
+        String blockStorage = "--blockStorage";
+        String folderPath =  "..\\blockStorage\\" + username + blockStorage + "\\" + "flatFiles";
+        File flatfileFolder = new File(folderPath);
+
+        File[] fileContents = flatfileFolder.listFiles();
+        String[] names = new String[fileContents.length];
+        int index = 0;
+        for(File file: fileContents){
+            names[index] = file.getName();
+            index++;
+        }
+
+        return names;
+    }
+
+    public String[] getAllSpecfileNames(ObjectId userId) throws AuthenticationFailed{
+        Optional<User> optional = userRepository.findById(userId);
+        if(!optional.isPresent()){
+            throw new AuthenticationFailed();
+        }
+        String username = optional.get().getUsername();
+        String blockStorage = "--blockStorage";
+        String folderPath =  "..\\blockStorage\\" + username + blockStorage + "\\" + "specFiles";
+        File specfileFolder = new File(folderPath);
+
+        File[] fileContents = specfileFolder.listFiles();
+        String[] names = new String[fileContents.length];
+        int index = 0;
+        for(File file: fileContents){
+            names[index++] = file.getName();
+        }
+
+        return names;
+    }
+
+    
 }

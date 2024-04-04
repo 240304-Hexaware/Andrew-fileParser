@@ -2,16 +2,10 @@ package carv.springwithmongo.Service;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.time.LocalDateTime;
 
-import org.bson.Document;
-import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import carv.springwithmongo.Model.GenericRecord;
 import carv.springwithmongo.Model.RecordMetadata;

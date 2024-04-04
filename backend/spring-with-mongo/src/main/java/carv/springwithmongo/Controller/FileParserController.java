@@ -1,6 +1,5 @@
 package carv.springwithmongo.Controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,10 +15,7 @@ import carv.springwithmongo.Service.RecordMetadataService;
 import carv.springwithmongo.Service.SessionService;
 import carv.springwithmongo.Service.UserService;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.List;
 
 import org.bson.Document;
 import org.bson.types.ObjectId;
@@ -29,7 +25,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 
 //mongodb+srv://andrewcarvajal38:xOZDUYwZea38D694@file-parser-cluster0.8kdatr1.mongodb.net/?retryWrites=true&w=majority&appName=file-parser-cluster0
@@ -86,7 +81,7 @@ public class FileParserController {
     @CrossOrigin(origins="*")
     @GetMapping("getRecordsBySession/{id}")
     public Document[] getRecordsBySessionId(@PathVariable String id) throws Exception{
-        System.out.println("Recieved: " + id);
+        //System.out.println("Recieved: " + id);
         Session session = sessionService.findById(new ObjectId(id));
         Document[] docs = new Document[session.getRecords().size()];
         int index = 0;
@@ -95,6 +90,14 @@ public class FileParserController {
         }
         return docs;
     }
+
+    @CrossOrigin(origins="*")
+    @GetMapping("getMetadataBySession/{id}")
+    public RecordMetadata getMetadataBySessionId(@PathVariable String id) throws Exception{
+        //System.out.println("Recieved: " + id);
+        return sessionService.findById(new ObjectId(id)).getRmetadata();
+    }
+
 
     @ExceptionHandler(AuthenticationFailed.class)
     @ResponseStatus(HttpStatus.UNAUTHORIZED)

@@ -1,24 +1,83 @@
 <div class="w-75 mx-auto" style="border: 1px black solid">
     <div class="d-flex flex-row justify-content-between mb-3">
         <div class="p-2"></div>
-        <div class="p-2">Flex item 1</div>
-        <div class="p-2">Flex item 2</div>
+        <section class="p-2">
+            <label>To:</label>
+            <input type="date" id="minDate"   value="yyyy-mm-dd" class="input-medium search-query" onkeypress="return false">
+            <label>From:</label>
+            <input type="date" id="maxDate"   value="yyyy-mm-dd" class="input-medium search-query" onkeypress="return false">
+        </section>
+        <select class="" id="formatViewSelect">
+            <option value="0" (click)="refreshPlease(0)">JSON</option> <!--The Smelliest Of Smelly-->
+            <option value="1" (click)="refreshPlease(1)">Table</option>
+        </select>
+        <!--div class="p-2 btn-group dropup">
+            <button type="button" id="formatButton" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+              JSON
+            </button>
+            <ul class="dropdown-menu"> <TODO: Need to make this dynamic>
+                <li class="dropdown-item" (click)="showFormatTable()">JSON</li>
+                <li class="dropdown-item" (click)="showFormatJSON()">Table</li>
+            </ul>
+          </div-->
     </div>
-    <div class="d-flex flex-row align-items-stretch justify-content-center mb-2" style="border: 1px black solid">
-        <div class="p-2" style="border: 1px black solid">
+    <div class="d-flex flex-row align-items-stretch justify-content-between mb-2" style="border: 1px black solid">
+        <div class="p-2 overflow-y-scroll" style="border: 1px black solid">
             <app-sessions
                 *ngFor="let session of sessions"
                 [session]="session"
                 (recordsEmitter)="transferDocs($event)"
+                (sessionEmitter)="transferMetadata($event)"
             ></app-sessions>
         </div>
-        <div class="p-2" style="border: 1px black solid">
-            <p class="mx-auto">flatfile.txt</p>
+        <div class="p-2 h-25" style="border: 1px black solid">
+            <p class="mx-auto">{{this.displayFlatName()}}</p>
             <p class="mx-auto">=></p>
-            <p class="mx-auto">specfile.txt</p>
+            <p class="mx-auto">{{this.displaySpecName()}}</p>
         </div>
-        <div class="p-2" style="border: 1px black solid">
-            <p>{{this.fullJson}}</p>
+        <div class="p-2 w-95" [ngSwitch]="getViewCase()" style="border: 1px black solid; height: 700px; width: 700px">
+            <p *ngSwitchCase="0">{{this.fullJson}}</p>
+            
+            <div *ngSwitchCase="1">
+                <table class="table">
+                    <thead>
+                        <tr *ngIf="!(this.documents.length == 0)">
+                            <!--th scope="col" style="border:1px solid black;">#</th--><!--Throws Error-->
+                            <th scope="col" style="border:1px solid black;" *ngFor="let colName of this.keyify()">{{colName}}</th> 
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let entry of this.documents">
+                            <!--th scope="row">{{tempIdIncr()}}</th--><!--Throws Incrememting and state error-->
+                            <td *ngFor="let val of this.valuify(entry)">{{val}}</td>
+                            
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+            <!--div *ngSwitchCase="1">
+                <table class="table table-striped">
+                    <thead>
+                        <tr *ngIf="!(this.documents.length == 0)">
+                            <th scope="col">#</th>
+                            <th scope="col" *ngFor="let colName of this.keyify()">{{colName}}</th>
+                            <th *ngFor="let colName of Object.keys(this.documents[0])">{{colName}}</th> <Set keys when we get this.documents>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let entry of this.documents">
+                            <th scope="row">{{tempIdIncr()}}</th>
+                            <app-value *ngFor="let val of this.valuify(entry)" [col] = "val"></app-value>
+                            <!app-value *ngFor="let val of Object.values(entry)" [val] = "col"></app-value->
+                        </tr>
+                    </tbody>
+                </table>
+            </div-->
+            
+        
+            
         </div>
     </div>
 </div>

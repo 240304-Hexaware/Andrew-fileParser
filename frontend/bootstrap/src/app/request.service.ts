@@ -2,6 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from './Models/user';
+import { Rmetadata } from './Models/rmetadata';
+import { Session } from './Models/session';
 
 @Injectable({
   providedIn: 'root'
@@ -51,9 +53,25 @@ export class RequestService {
   }
 
   getAllRecordsBySession(id: any){
-    console.log("Recieving id:",id);
     let urlString = this.url+"getRecordsBySession/"+id;
-    console.log("Sending Request to:",urlString);
     return this.http.get<any>(urlString);
+  }
+  getMetadataBySession(id: any){
+    let urlString = this.url+"getMetadataBySession/"+id;
+    return this.http.get<Rmetadata>(urlString);
+  }
+  loadSpecFilter(id:any, specName:string){
+    let urlString = this.url+"users/"+id+"/loadSpecFilter/"+specName;
+    return this.http.get<Session[]>(urlString);
+  }
+
+
+  getFlatfileNames(id: any){
+    let urlString = this.url+"users/"+id+"/getFlatFileNames";
+    return this.http.get<string[]>(urlString);
+  }
+  getSpecfileNames(id: any){
+    let urlString = this.url+"users/"+id+"/getSpecFileNames";
+    return this.http.get<string[]>(urlString);
   }
 }
