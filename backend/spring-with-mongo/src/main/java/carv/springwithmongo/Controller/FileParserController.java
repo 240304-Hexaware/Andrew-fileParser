@@ -57,7 +57,7 @@ public class FileParserController {
         throws IOException, AuthenticationFailed {
         
         //TODO: pass paths as header data
-        System.out.println("Recieved Header:"+id);
+        System.out.println("Recieved file-parse:"+id);
         if(!userService.authorizeUser(id)){
             throw new AuthenticationFailed();
         }

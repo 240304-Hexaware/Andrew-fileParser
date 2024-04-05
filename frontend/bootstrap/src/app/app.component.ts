@@ -80,7 +80,7 @@ export class AppComponent {
       });
   }
 
-  activateLinks(){
+  /*activateLinks(){
     console.log("Changing attribute");
     let ident = 'nav-link-'
     const elements = document.querySelectorAll(".nav-link");
@@ -88,18 +88,24 @@ export class AppComponent {
       element.setAttribute("class", "nav-link");
       element.setAttribute("aria-disabled", "false");
       switch(element.getAttribute("id")){
-        case ident+'add':
-          
+        case (ident+'add'):
+
+          element.setAttribute("class", "btn")
+          element.setAttribute("data-bs-target", "#addFileModal");
+          element.setAttribute("data-bs-toggle", "modal");
+          //data-bs-toggle="modal"
           break;
         case ident+'view-parsed':
-          //;
+          element.setAttribute("[routerLink]", "['/view-parsed']");
+          //aria-disabled="true" [routerLink]="['/view-parsed']";
           break;
         case ident+'view-aggregate':
-          //;
+          element.setAttribute("[routerLink]", "['/view-aggregate']");
+          //aria-disabled="true" [routerLink]="['/view-aggregate']";
           break;
       }
     });
-  }
+  }*/
 
   welcomeCheck() : boolean{
     return !(this.userService.user.id == '');

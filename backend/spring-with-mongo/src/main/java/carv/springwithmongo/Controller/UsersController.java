@@ -89,7 +89,7 @@ public class UsersController {
     @GetMapping("{userId}/loadSpecFilter/{specfileName}")
     @ResponseStatus(HttpStatus.OK)
     public List<Session> filterSessionsBySpec(@PathVariable String userId, @PathVariable String specfileName) throws AuthenticationFailed{
-        System.out.println("Filter Hit");
+        //System.out.println("Filter Hit");
         List<Session> allSessions = this.userService.getById(new ObjectId(userId)).getSessions();
         List<Session> filteredSessions = new ArrayList<Session>();
         for(Session session: allSessions){

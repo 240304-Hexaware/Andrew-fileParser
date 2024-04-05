@@ -106,7 +106,7 @@ export class ViewParsedComponent {
 
 
 
-  /*showFormatJSON(){
+  showFormatJSON(){
     const dom = window.document.getElementById("formatButton");
     if(!(dom === null)){
       dom.innerHTML = "Table";
@@ -122,15 +122,15 @@ export class ViewParsedComponent {
   }
   getViewCase(){
     return this.viewCase;
-  }*/
-  getViewCase() :number
+  }
+  /*getViewCase() :number
   {
     let dom = (document.getElementById("formatViewSelect")) as  HTMLSelectElement;
     if(dom !== null){
       return parseInt(dom.value);
     }
     return 0;
-  }
+  }*/
   keyify(){
     return Object.keys(this.documents[0]);
   }

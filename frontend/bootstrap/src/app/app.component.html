@@ -8,71 +8,75 @@
 
 <!--nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #969696;"></nav-->
 <nav class="navbar navbar-expand-lg bg-body-tertiary " style="margin-top:-8px">
-  <div class="container-fluid " style="background-color: #ededed;box-shadow: 1px 5px 25px var(--shadow-color)"><!--#ededed-->
+  <div class="container-fluid" style="background-color: #ededed;box-shadow: 1px 5px 25px var(--shadow-color)">
+    <!--#ededed-->
     <a class="navbar-brand fs-1" [routerLink]="['']" style="font-family: Georgia, serif; margin-left:5px;">
-      <!--img src="../doublePageIcon.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top"-->
+      <img src="../assets/doublePageIcon.png" alt="Logo" width="35" height="40" class="d-inline-block align-text-top">
       FileParser
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <button type="button" class="btn"  id="nav-link-add" data-bs-toggle="modal" data-bs-target="#addFileModal">Add</button>
+          <button type="button" class="btn" id="nav-link-add" data-bs-toggle="modal"
+          data-bs-target="#addFileModal">Add</button>
 
-          <div class="modal fade" id="addFileModal" tabindex="-1" aria-labelledby="addFileModalLabel" aria-hidden="true">
+          <div class="modal fade" id="addFileModal" tabindex="-1" aria-labelledby="addFileModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
                   <h1 class="modal-title fs-5" id="addFileModalLabel">Parse Files</h1>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                
-                  <div class="modal-body">
-                    <div class="d-flex">
-                      <div class="d-flex flex-column mb-3">
-                        <label class="p-1 " for="username">Insert Flatfile:</label>
-                        <input class="" id="flatfileInput" type="file" />
-                        <label class="p-1 " for="password">Insert Specfile:</label>
-                        <input class="" id="specfileInput" type="file" />
-                        <!--button>Parse</button-->
-                      </div>
-                      <div class="d-flex flex-column mb-3">
-                        
-                        <select class="form-select">
-                          <option selected value="0">Use Existing Spec</option>
-                          <option value="1">One</option>
-                          <option value="2">Two</option>
-                          <!--option *ngFor="let spec for listSpecs">{{spec}}</option-->
-                        </select>
 
-                      </div>
+                <div class="modal-body">
+                  <div class="d-flex">
+                    <div class="d-flex flex-column mb-3">
+                      <label class="p-1 " for="username">Insert Flatfile:</label>
+                      <input class="" id="flatfileInput" type="file" (change)="flatfileChosen($event)"/>
+                      <label class="p-1 " for="password">Insert Specfile:</label>
+                      <input class="" id="specfileInput" type="file" (change)="specfileChosen($event)"/>
+                      <!--button>Parse</button-->
                     </div>
-                    
+                    <!--div class="d-flex flex-column mb-3">
+
+                      <select class="form-select">
+                        <option selected value="0">Use Existing Spec</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option *ngFor="let spec for listSpecs">{{spec}}</option>
+                      </select>
+
+                    </div-->
                   </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Parse</button>
-                  </div>
-                
+
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" (click)="submitParse()">Parse</button>
+                </div>
+
               </div>
             </div>
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="nav-link-view-parsed" aria-disabled="false" [routerLink]="['/view-parsed']">View Parsed</a> <!--Route-->
-          <!--a class="nav-link disabled" id="nav-link-view-parsed" aria-disabled="true" [href]="['/view-parsed']">View Parsed</a--> <!--Route-->
-          
+          <a class="nav-link" id="nav-link-view-parsed" aria-disabled="false" [routerLink]="['/view-parsed']">View
+            Parsed</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="nav-link-view-aggregate" aria-disabled="false" [routerLink]="['/view-aggregate']">View Aggregate</a> <!--Route-->
+            <a class="nav-link" id="nav-link-view-aggregate" aria-disabled="false" [routerLink]="['/view-aggregate']">View
+              Aggregate</a>
         </li>
       </ul>
       <app-authorize *ngIf="this.welcomeCheck(); else elseBlock"></app-authorize>
       <ng-template #elseBlock>
-        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#registerModal">Sign Up</button>
+        <button type="button" class="btn " data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
 
         <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
           <div class="modal-dialog">
@@ -85,9 +89,9 @@
                 <div class="modal-body">
                   <div class="d-flex flex-column mb-3">
                     <label class="p-1 " for="username">Username:</label>
-                    <input class="p-1 " id="username" type="text" formControlName="username"/>
+                    <input class="p-1 " id="username" type="text" formControlName="username" />
                     <label class="p-1 " for="password">Password:</label>
-                    <input class="p-1 " id="password" type="text" formControlName="password"/>
+                    <input class="p-1 " id="password" type="text" formControlName="password" />
                   </div>
                 </div>
                 <div class="modal-footer">
@@ -98,25 +102,26 @@
             </div>
           </div>
         </div>
-        <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+        <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel"
+          aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h1 class="modal-title fs-5" id="registerModalLabel">Register</h1>
+                <h1 class="modal-title fs-5" id="registerModalLabel">Sign Up</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <form id="" [formGroup]="registerForm" (submit)="submitRegister()">
                 <div class="modal-body">
                   <div class="d-flex flex-column mb-3">
                     <label class="p-1 " for="username">Username:</label>
-                    <input class="p-1 " id="username" type="text" formControlName="username"/>
+                    <input class="p-1 " id="username" type="text" formControlName="username" />
                     <label class="p-1 " for="password">Password:</label>
-                    <input class="p-1 " id="password" type="text" formControlName="password"/>
+                    <input class="p-1 " id="password" type="text" formControlName="password" />
                   </div>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Register</button>
+                  <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Sign Up</button>
                 </div>
               </form>
             </div>
@@ -131,5 +136,5 @@
     </div>
   </div>
 </nav>
-<router-outlet/>
+<router-outlet />
 <!--p>{{welcomeCheck()}}</p-->

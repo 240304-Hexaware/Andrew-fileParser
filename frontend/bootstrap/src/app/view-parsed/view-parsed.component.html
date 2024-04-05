@@ -8,19 +8,19 @@
                 <label>From:</label>
                 <input type="date" id="maxDate"   value="yyyy-mm-dd" class="input-medium search-query" onkeypress="return false">
             </section>
-            <select class="" id="formatViewSelect">
-                <option value="0" (click)="refreshPlease(0)">JSON</option> <!--The Smelliest Of Smelly-->
+            <!--select class="" id="formatViewSelect">
+                <option value="0" (click)="refreshPlease(0)">JSON</option>
                 <option value="1" (click)="refreshPlease(1)">Table</option>
-            </select>
-            <!--div class="p-2 btn-group dropup">
+            </select-->
+            <div class="p-2 btn-group dropup">
                 <button type="button" id="formatButton" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                   JSON
                 </button>
-                <ul class="dropdown-menu"> <TODO: Need to make this dynamic>
+                <ul class="dropdown-menu"> <!--TODO: Need to make this dynamic-->
                     <li class="dropdown-item" (click)="showFormatTable()">JSON</li>
                     <li class="dropdown-item" (click)="showFormatJSON()">Table</li>
                 </ul>
-              </div-->
+            </div>
         </div>
         <div class="d-flex flex-row align-items-stretch justify-content-between mb-2" style="border: 1px black solid">
             <div class="p-2 overflow-y-scroll" style="border: 1px black solid">

@@ -25,15 +25,15 @@ export class ViewAggregateComponent {
     requestService.getSpecfileNames(userService.user.id)
       .subscribe((specNames:string[])=>{
         this.specFileNames = specNames;
-        console.log("Loaded specfilenames:", this.specFileNames);
+        //console.log("Loaded specfilenames:", this.specFileNames);
       });
   }
 
   loadFilter(){
-    console.log("loadFilter Hit");
+    //console.log("loadFilter Hit");
     this.records = [];
     if(this.selectedOption != "0"){
-      console.log("LoadFilter Component Method");
+      //console.log("LoadFilter Component Method");
       let specName:string = this.selectedOption;
       this.requestService.loadSpecFilter(this.userService.user.id, specName)
         .subscribe((sessions: Session[])=>{
@@ -50,6 +50,10 @@ export class ViewAggregateComponent {
     
     
   }
+  keyify(){
+    return Object.keys(this.records[0]);
+  }
+
   valuify(record: any){
     return Object.values(record);
   }
